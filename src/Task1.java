@@ -22,19 +22,19 @@ public class Task1 {
   // таких уровней столько, сколько раз можно делить на половинки, пока размер не станет 1 - log n
   // итого O(n log n) по времени - быстрее (даже теоретически) не получится !в общем виде!
   // O(n) по памяти (и, возможно, O(1) для связных списков при другой реализации)
-  public static List<Integer> sort(List<Integer> numbers) {
-    if (numbers.size() < 2) { // пустой список или список из одного элемента уже отсортирован
-      return numbers; // возвращаем его, как есть
+  public static List<String> sort(List<String> strings) {
+    if (strings.size() < 2) { // пустой список или список из одного элемента уже отсортирован
+      return strings; // возвращаем его, как есть
     }
 
     // разбить на две половинки
-    int mid = numbers.size() / 2;
-    List<Integer> left = numbers.subList(0, mid);
-    List<Integer> right = numbers.subList(mid, numbers.size());
+    int mid = strings.size() / 2;
+    List<String> left = strings.subList(0, mid);
+    List<String> right = strings.subList(mid, strings.size());
     // O(n) дополнительной памяти, O(n) по времени (копирование массива)
     // O(1) дополнительной памяти, O(1) по времени (для связных списков при другой реализации)
 
-    System.out.println("=== sort(" + numbers + ") ===");
+    System.out.println("=== sort(" + strings + ") ===");
     System.out.println("left = " + left);
     System.out.println("right = " + right);
 
@@ -53,19 +53,19 @@ public class Task1 {
    * @param list2 отсортированный по возрастанию список чисел
    * @return отсортированный по возрастанию итоговый список чисел после слияния
    */
-  private static List<Integer> merge(List<Integer> list1, List<Integer> list2) {
+  private static List<String> merge(List<String> list1, List<String> list2) {
     // O(n) дополнительной памяти (или O(1) для связных списков при другой реализации)
     // O(n) по времени
     System.out.println("=== merge(" + list1 + ", " + list2 + ") ===");
-    List<Integer> result = new ArrayList<>();
+    List<String> result = new ArrayList<>();
     int i1 = 0;
     int i2 = 0;
 
     while (i1 < list1.size() && i2 < list2.size()) {
       // пока оба списка не закончились
-      int first = list1.get(i1);
-      int second = list2.get(i2);
-      if (first < second) {
+      String first = list1.get(i1);
+      String second = list2.get(i2);
+      if (first.compareTo(second) < 0) {
         result.add(first);
         ++i1;
       } else {
@@ -94,15 +94,15 @@ public class Task1 {
   }
 
   public static void main(String[] args) {
-    List<Integer> numbers = new ArrayList<>();
-    numbers.add(3);
-    numbers.add(1);
-    numbers.add(7);
-    numbers.add(2);
-    numbers.add(5);
+    List<String> strings = new ArrayList<>();
+    strings.add("abc");
+    strings.add("abcdef");
+    strings.add("abcd");
+    strings.add("abcdefg");
+    strings.add("ab");
 
-    System.out.println(numbers);
-    numbers = sort(numbers);
-    System.out.println(numbers);
+    System.out.println(strings);
+    strings = sort(strings);
+    System.out.println(strings);
   }
 }
